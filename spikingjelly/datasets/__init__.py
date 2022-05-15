@@ -668,6 +668,7 @@ class NeuromorphicDatasetFolder(DatasetFolder):
                     fpath = os.path.join(download_root, file_name)
                     if not utils.check_integrity(fpath=fpath, md5=md5):
                         print(f'The file [{fpath}] does not exist or is corrupted.')
+                        print(f'This is SOUBHIK CHATTERJEE')
 
                         if os.path.exists(fpath):
                             # If file is corrupted, we will remove it.
