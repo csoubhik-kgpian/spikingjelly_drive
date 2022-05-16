@@ -717,6 +717,10 @@ class NeuromorphicDatasetFolder(DatasetFolder):
             print(f'Mkdir [{events_np_root}].')
             print(f'Start to convert the origin data from [{extract_root}] to [{events_np_root}] in np.ndarray format.')
             self.create_events_np_files(extract_root, events_np_root)
+            try:
+                shutil.copytree(events_np_root, "/content/drive/MyDrive/ES_Imagenet/events_np")
+            except OSError as e:
+                print("Error: %s : %s" % (extract_root, e.strerror))
 
         H, W = self.get_H_W()
 
