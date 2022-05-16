@@ -4,6 +4,7 @@ from .. import datasets as sjds
 import os
 import rarfile
 import time
+import shutil
 
 
 def load_events(fname: str):
@@ -158,11 +159,20 @@ class ESImageNet(sjds.NeuromorphicDatasetFolder):
 
         This function defines how to extract download files.
         '''
-        rar_file = os.path.join(download_root, 'ES-imagenet-0.18.part01.rar')
-        print(f'Extract [{rar_file}] to [{extract_root}].')
-        rar_file = rarfile.RarFile(rar_file)
-        rar_file.extractall(extract_root)
-        rar_file.close()
+        files=['ES-imagenet-0.18.part01.rar','ES-imagenet-0.18.part02.rar','ES-imagenet-0.18.part03.rar','ES-imagenet-0.18.part04.rar',
+               'ES-imagenet-0.18.part05.rar','ES-imagenet-0.18.part06.rar','ES-imagenet-0.18.part07.rar','ES-imagenet-0.18.part08.rar',
+               'ES-imagenet-0.18.part09.rar','ES-imagenet-0.18.part10.rar','ES-imagenet-0.18.part11.rar','ES-imagenet-0.18.part12.rar',
+               'ES-imagenet-0.18.part13.rar','ES-imagenet-0.18.part14.rar','ES-imagenet-0.18.part15.rar','ES-imagenet-0.18.part16.rar',
+               'ES-imagenet-0.18.part17.rar','ES-imagenet-0.18.part18.rar','ES-imagenet-0.18.part19.rar','ES-imagenet-0.18.part20.rar',
+               'ES-imagenet-0.18.part21.rar','ES-imagenet-0.18.part22.rar','ES-imagenet-0.18.part23.rar','ES-imagenet-0.18.part24.rar',
+              'ES-imagenet-0.18.part25.rar']
+        for file in files:
+            rar_file = os.path.join(download_root, file)
+            print(f'Extract [{rar_file}] to [{extract_root}].')
+            rar_file = rarfile.RarFile(rar_file)
+            rar_file.extractall(extract_root)
+            rar_file.close()
+        shutil.copytree(extract_root, "/content/drive/MyDrive/ES_Imagenet")
 
 
 
