@@ -172,7 +172,17 @@ class ESImageNet(sjds.NeuromorphicDatasetFolder):
             rar_file = rarfile.RarFile(rar_file)
             rar_file.extractall(extract_root)
             rar_file.close()
-        shutil.copytree(extract_root, "/content/drive/MyDrive/ES_Imagenet")
+
+        try:
+            shutil.copytree(extract_root, "/content/drive/MyDrive/ES_Imagenet")
+        except OSError as e:
+            print("Error: %s : %s" % (extract_root, e.strerror))
+
+        try:
+            shutil.rmtree(download_root)
+        except OSError as e:
+            print("Error: %s : %s" % (download_root, e.strerror))
+
 
 
 
